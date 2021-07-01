@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Task4 - Note</string>
+    <string name="about">О приложении</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tooltip_header">Заголовок</string>
+    <string name="tooltip_body">Текст</string>
+</resources>
