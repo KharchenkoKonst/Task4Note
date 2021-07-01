@@ -17,11 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.task4_note.R;
 import com.example.task4_note.model.note.Note;
 import com.example.task4_note.model.note.NotesAdapter;
+import com.example.task4_note.presenter.HeadersFragmentPresenter;
+import com.example.task4_note.view.interfaces.IHeadersFragment;
 
 import org.jetbrains.annotations.NotNull;
 
-public class HeadersFragment extends Fragment implements NotesAdapter.OnNoteListener {
+import java.util.Collection;
 
+
+public class HeadersFragment extends Fragment implements NotesAdapter.OnNoteListener, IHeadersFragment {
+
+    private View view;
+    private HeadersFragmentPresenter presenter;
     private NotesAdapter notesAdapter;
     public static String GET_NOTE = "GET_NOTE";
 
@@ -29,26 +36,37 @@ public class HeadersFragment extends Fragment implements NotesAdapter.OnNoteList
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_headers, container, false);
-        init(v);
-        return v;
+        view = inflater.inflate(R.layout.fragment_headers, container, false);
+        init();
+        return view;
     }
 
-    private void init(View v) {
-        v.findViewById(R.id.addNoteButton).setOnClickListener(v1 -> addNote());
-        RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
+
+    //region init
+    private void init() {
+        view.findViewById(R.id.addNoteButton).setOnClickListener(v1 -> addNote());
+        presenter = new HeadersFragmentPresenter(this);
+        recyclerInit();
+        listenerInit();
+    }
+
+    private void recyclerInit() {
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         notesAdapter = new NotesAdapter(this);
         recyclerView.setAdapter(notesAdapter);
+    }
 
+    private void listenerInit() {
         getParentFragmentManager().setFragmentResultListener(GET_NOTE, this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull @NotNull String requestKey, @NonNull @NotNull Bundle result) {
                 Note note = (Note) result.getSerializable(GET_NOTE);
-                Log.i("fragmentResult", note.getDate());
+                presenter.newNote(note);
             }
         });
     }
+    //endregion
 
     private void addNote() {
         ContentFragment content = new ContentFragment();
@@ -61,5 +79,10 @@ public class HeadersFragment extends Fragment implements NotesAdapter.OnNoteList
     @Override
     public void onNoteClick(int position) {
 
+    }
+
+    @Override
+    public void addNote(Note note) {
+        notesAdapter.addItem(note);
     }
 }
