@@ -5,11 +5,11 @@ import com.example.task4_note.model.note.Note
 class HeadersFragmentModel {
     private var notes = ArrayList<Note>()
 
-    fun setNotes(notes: Collection<Note>) {
+    fun setNotes(notes: List<Note>) {
         this.notes = notes as ArrayList<Note>
     }
 
-    fun getNote(): Collection<Note> {
+    fun getNotes(): List<Note> {
         return notes
     }
 }
