@@ -30,6 +30,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     public void editItem(Note note, int id){
         this.notes.set(id, note);
+        notifyDataSetChanged();
     }
 
     public void clearItems() {

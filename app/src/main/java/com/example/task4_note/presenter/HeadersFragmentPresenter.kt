@@ -25,5 +25,6 @@ class HeadersFragmentPresenter(view: IHeadersFragment) {
         var notes = model.getNotes() as MutableList<Note>
         notes[index!!] = note
         model.setNotes(notes)
+        view.editNote(note, index!!)
     }
 }
