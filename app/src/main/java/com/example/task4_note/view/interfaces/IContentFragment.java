@@ -5,5 +5,6 @@ import android.os.Bundle;
 public interface IContentFragment {
     String getHeader();
     String getBody();
-    void returnNote(Bundle data);
+    void returnNewNote(Bundle data);
+    void returnEditedNote(Bundle data);
 }

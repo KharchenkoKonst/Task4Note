@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.task4_note.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
@@ -25,6 +26,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     public void addItem(Note note) {
         this.notes.add(note);
         notifyDataSetChanged();
+    }
+
+    public void editItem(Note note, int id){
+        this.notes.set(id, note);
     }
 
     public void clearItems() {
