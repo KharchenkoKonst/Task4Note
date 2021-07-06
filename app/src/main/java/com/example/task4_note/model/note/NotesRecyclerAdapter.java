@@ -9,34 +9,38 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.task4_note.R;
+import com.example.task4_note.database.TempDB;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
+public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdapter.NotesViewHolder> {
 
-    private final List<Note> notes = new ArrayList<>();
+    private List<Note> notes = new ArrayList<>();
     private final OnNoteListener onNoteListener;
 
-    public NotesAdapter(OnNoteListener onNoteListener) {
+    public NotesRecyclerAdapter(OnNoteListener onNoteListener) {
         this.onNoteListener = onNoteListener;
     }
 
-    public void addItem(Note note) {
-        this.notes.add(note);
+    public void refresh(){
+        this.notes = TempDB.Companion.getNotes();
         notifyDataSetChanged();
     }
 
-    public void editItem(Note note, int id){
-        this.notes.set(id, note);
-        notifyDataSetChanged();
-    }
-
-    public void clearItems() {
-        this.notes.clear();
-        notifyDataSetChanged();
-    }
+//    public void addItem(Note note) {
+//        this.notes.add(note);
+//        notifyDataSetChanged();
+//    }
+//
+//    public void editItem(Note note, int id){
+//        this.notes.set(id, note);
+//    }
+//
+//    public void clearItems() {
+//        this.notes.clear();
+//        notifyDataSetChanged();
+//    }
 
     @NonNull
     @Override

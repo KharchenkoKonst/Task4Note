@@ -1,5 +1,6 @@
 package com.example.task4_note.view.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,24 +12,31 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.task4_note.R;
-import com.example.task4_note.model.note.Note;
-import com.example.task4_note.model.note.NotesAdapter;
-import com.example.task4_note.presenter.HeadersFragmentPresenter;
+//import com.example.task4_note.model.note.Note;
+import com.example.task4_note.model.note.NotesPagerAdapter;
+import com.example.task4_note.model.note.NotesRecyclerAdapter;
+//import com.example.task4_note.presenter.HeadersFragmentPresenter;
+import com.example.task4_note.view.PagerActivity;
 import com.example.task4_note.view.interfaces.IHeadersFragment;
 
 import org.jetbrains.annotations.NotNull;
 
-public class HeadersFragment extends Fragment implements NotesAdapter.OnNoteListener, IHeadersFragment {
+//import java.util.List;
+
+
+public class HeadersFragment extends Fragment implements NotesRecyclerAdapter.OnNoteListener, IHeadersFragment {
 
     private View view;
-    private HeadersFragmentPresenter presenter;
-    private NotesAdapter notesAdapter;
+    //    private HeadersFragmentPresenter presenter;
+    private NotesRecyclerAdapter notesRecyclerAdapter;
     public static String NOTE_DATA = "NOTE_DATA";
     public static String NEW_NOTE = "NEW_NOTE";
     public static String EDITED_NOTE = "EDITED_NOTE";
     public static String OPEN_NOTE = "OPEN_NOTE";
+    public static String REFRESH_HEADERS = "REFRESH_HEADERS";
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -43,7 +51,7 @@ public class HeadersFragment extends Fragment implements NotesAdapter.OnNoteList
     //region init
     private void init() {
         view.findViewById(R.id.addNoteButton).setOnClickListener(v1 -> addNote());
-        presenter = new HeadersFragmentPresenter(this);
+//        presenter = new HeadersFragmentPresenter(this);
         recyclerInit();
         listenerInit();
     }
@@ -51,19 +59,13 @@ public class HeadersFragment extends Fragment implements NotesAdapter.OnNoteList
     private void recyclerInit() {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        notesAdapter = new NotesAdapter(this);
-        recyclerView.setAdapter(notesAdapter);
+        notesRecyclerAdapter = new NotesRecyclerAdapter(this);
+        recyclerView.setAdapter(notesRecyclerAdapter);
     }
 
     private void listenerInit() {
-        getParentFragmentManager().setFragmentResultListener(NEW_NOTE, this, (requestKey, result) -> {
-            Note note = (Note) result.getSerializable(NOTE_DATA);
-            presenter.addNote(note);
-        });
-        getParentFragmentManager().setFragmentResultListener(EDITED_NOTE, this, (requestKey, result) -> {
-            Note note = (Note) result.getSerializable(NOTE_DATA);
-            presenter.editNote(note);
-        });
+        getParentFragmentManager().setFragmentResultListener(REFRESH_HEADERS, this, (requestKey, result)
+                -> notesRecyclerAdapter.refresh());
     }
     //endregion
 
@@ -77,28 +79,37 @@ public class HeadersFragment extends Fragment implements NotesAdapter.OnNoteList
 
     @Override
     public void onNoteClick(int position) {
-        presenter.openNote(position);
+        openPagerView(position);
     }
 
-    @Override
-    public void addNote(@NotNull Note note) {
-        notesAdapter.addItem(note);
-    }
+//    @Override
+//    public void addNote() {
+//        notesRecyclerAdapter.refresh();
+//    }
 
-    @Override
-    public void openNote(@NotNull Note note) {
-        ContentFragment content = new ContentFragment();
-        Bundle data = new Bundle();
-        data.putSerializable(OPEN_NOTE, note);
-        content.setArguments(data);
+    public void openPagerView(int idOfSelected) {
+        startActivity(new Intent(getActivity(), PagerActivity.class));
+/*
+        PagerNotesFragment fragment = new PagerNotesFragment();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment, content);
+        transaction.add(R.id.fragment, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+*/
+//        ContentFragment content = new ContentFragment();
+//        Bundle data = new Bundle();
+//        data.putSerializable(OPEN_NOTE, notes);
+//        content.setArguments(data);
+//        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//        transaction.add(R.id.fragment, content);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
     }
 
+/*
     @Override
-    public void editNote(@NotNull Note note, int id) {
-        notesAdapter.editItem(note, id);
+    public void saveNoteChanges(@NotNull Note note, int id) {
+        notesRecyclerAdapter.editItem(note, id);
     }
+*/
 }

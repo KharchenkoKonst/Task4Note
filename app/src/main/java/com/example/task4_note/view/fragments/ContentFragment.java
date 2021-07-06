@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.task4_note.R;
-import com.example.task4_note.model.note.Note;
 import com.example.task4_note.presenter.ContentFragmentPresenter;
 import com.example.task4_note.view.interfaces.IContentFragment;
 
@@ -37,14 +36,14 @@ public class ContentFragment extends Fragment implements IContentFragment {
         переданными данными о сохранённой заметке, которые, соответственно, будут отображены и доступны для
         изменения.
 */
-        Bundle data = getArguments();
-        if (data != null) {
-            isEdit = true;
-            Note note = (Note) data.getSerializable(HeadersFragment.OPEN_NOTE);
-            date = note.getDate();
-            ((EditText) view.findViewById(R.id.headerText)).setText(note.getHeader());
-            ((EditText) view.findViewById(R.id.bodyText)).setText(note.getBody());
-        }
+//        Bundle data = getArguments();
+//        if (data != null) {
+//            isEdit = true;
+//            Note note = (Note) data.getSerializable(HeadersFragment.OPEN_NOTE);
+//            date = note.getDate();
+//            ((EditText) view.findViewById(R.id.headerText)).setText(note.getHeader());
+//            ((EditText) view.findViewById(R.id.bodyText)).setText(note.getBody());
+//        }
 
         init();
         return view;
@@ -53,11 +52,12 @@ public class ContentFragment extends Fragment implements IContentFragment {
     private void init() {
         presenter = new ContentFragmentPresenter(this);
         view.findViewById(R.id.saveButton).setOnClickListener(v1 -> {
-            if (isEdit) {
-                presenter.saveExistsNote(date);
-            } else {
-                presenter.saveNewNote();
-            }
+            presenter.saveNote();
+//            if (isEdit) {
+//                presenter.saveExistsNote(date);
+//            } else {
+//                presenter.saveNewNote();
+//            }
         });
     }
 
@@ -72,14 +72,15 @@ public class ContentFragment extends Fragment implements IContentFragment {
     }
 
     @Override
-    public void returnNewNote(Bundle data) {
-        getParentFragmentManager().setFragmentResult(HeadersFragment.NEW_NOTE, data);
+    public void refreshNotes(){
+        getParentFragmentManager().setFragmentResult(HeadersFragment.REFRESH_HEADERS, null);
         getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 
-    @Override
-    public void returnEditedNote(Bundle data) {
-        getParentFragmentManager().setFragmentResult(HeadersFragment.EDITED_NOTE, data);
-        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
-    }
+//
+//    @Override
+//    public void returnEditedNote(Bundle data) {
+//        getParentFragmentManager().setFragmentResult(HeadersFragment.EDITED_NOTE, data);
+//        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+//    }
 }
