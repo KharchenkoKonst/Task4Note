@@ -12,19 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.task4_note.R;
-//import com.example.task4_note.model.note.Note;
-import com.example.task4_note.model.note.NotesPagerAdapter;
 import com.example.task4_note.model.note.NotesRecyclerAdapter;
-//import com.example.task4_note.presenter.HeadersFragmentPresenter;
 import com.example.task4_note.view.PagerActivity;
 import com.example.task4_note.view.interfaces.IHeadersFragment;
 
 import org.jetbrains.annotations.NotNull;
-
-//import java.util.List;
 
 
 public class HeadersFragment extends Fragment implements NotesRecyclerAdapter.OnNoteListener, IHeadersFragment {
