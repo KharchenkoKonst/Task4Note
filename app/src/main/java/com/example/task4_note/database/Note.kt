@@ -1,7 +1,8 @@
 package com.example.task4_note.database
 
-import android.arch.persistence.room.*
 import android.content.Context
+import androidx.room.*
+
 
 @Database(entities = [Note::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {

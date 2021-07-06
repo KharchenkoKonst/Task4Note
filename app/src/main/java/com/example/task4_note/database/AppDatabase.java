@@ -1,4 +1,4 @@
 package com.example.task4_note.database;
 
-public class AppDatabase {
-}
+//public class AppDatabase {
+//}
