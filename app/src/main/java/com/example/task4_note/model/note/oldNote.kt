@@ -2,7 +2,9 @@ package com.example.task4_note.model.note
 
 import java.io.Serializable
 
-class Note2(
+const val NOTE_DATA = "NOTE_DATA"
+
+class oldNote(
 //    private val id: Int,
     private var body: String,
     private var header: String,

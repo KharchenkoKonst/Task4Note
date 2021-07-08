@@ -1,8 +1,5 @@
 package com.example.task4_note.model
 
-import com.example.task4_note.model.note.Note
-import java.util.*
-
 //class HeadersFragmentModel {
 //    private var notes = ArrayList<Note>()
 //

@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.task4_note.R;
 import com.example.task4_note.model.note.NotesRecyclerAdapter;
 import com.example.task4_note.view.PagerActivity;
-import com.example.task4_note.view.interfaces.IHeadersFragment;
+import com.example.task4_note.view.interfaces.ITitleFragment;
 
 import org.jetbrains.annotations.NotNull;
 
 
-public class HeadersFragment extends Fragment implements NotesRecyclerAdapter.OnNoteListener, IHeadersFragment {
+public class HeadersFragment extends Fragment implements NotesRecyclerAdapter.OnNoteListener {
 
     private View view;
     //    private HeadersFragmentPresenter presenter;

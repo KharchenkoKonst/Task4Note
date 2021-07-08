@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.task4_note.R;
+import com.example.task4_note.database.Note;
 import com.example.task4_note.database.TempDB;
 
 import java.util.ArrayList;
@@ -23,16 +24,21 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
         this.onNoteListener = onNoteListener;
     }
 
-    public void refresh(){
+    public void refresh() {
         this.notes = TempDB.Companion.getNotes();
         notifyDataSetChanged();
     }
 
-//    public void addItem(Note note) {
-//        this.notes.add(note);
-//        notifyDataSetChanged();
-//    }
-//
+    public void addItem(Note note) {
+        this.notes.add(note);
+        notifyDataSetChanged();
+    }
+
+    public void setItems(List<Note> notes) {
+        this.notes = notes;
+        notifyDataSetChanged();
+    }
+
 //    public void editItem(Note note, int id){
 //        this.notes.set(id, note);
 //    }
@@ -51,7 +57,7 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
 
     @Override
     public void onBindViewHolder(NotesViewHolder holder, int position) {
-        holder.header.setText(notes.get(position).getHeader());
+        holder.header.setText(notes.get(position).getTitle());
         holder.date.setText(notes.get(position).getDate());
     }
 
@@ -60,7 +66,7 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
         return notes.size();
     }
 
-    class NotesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class NotesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView header;
         private final TextView date;

@@ -1,6 +1,5 @@
 package com.example.task4_note.database
 
-import com.example.task4_note.model.note.Note
 
 class TempDB {
     companion object {
