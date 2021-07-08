@@ -1,7 +1,11 @@
 package com.example.task4_note.database
 
 import android.content.Context
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.*
+import androidx.versionedparcelable.ParcelField
+import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
 
 @Database(entities = [Note::class], version = 1)
@@ -25,11 +29,12 @@ abstract class AppDatabase : RoomDatabase() {
 }
 
 @Entity
+@Parcelize
 data class Note(
     val date: String,
     var title: String,
     var body: String
-) : Serializable {
+) : Serializable, Parcelable {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
 }

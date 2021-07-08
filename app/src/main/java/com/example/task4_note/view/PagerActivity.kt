@@ -25,12 +25,15 @@ class PagerActivity : AppCompatActivity(), IPagerView {
         model = AppDatabase.getDatabase(this)
         presenter = PagerPresenter(this, model)
         lifecycleScope.launch { presenter.setAllData() }
-        val pager = findViewById<ViewPager2>(R.id.pager)
-        pager.adapter = adapter
-        if (startPos != null) {
-            while (false){ }
-            pager.setCurrentItem(startPos, false)
+        findViewById<ViewPager2>(R.id.pager).let {
+            it.adapter = adapter
+            startPos?.run { it.setCurrentItem(startPos, false) }
         }
+//        pager.adapter = adapter
+//        if (startPos != null) {
+//            while (false){ }
+//            pager.setCurrentItem(startPos, false)
+//        }
     }
 
     companion object{

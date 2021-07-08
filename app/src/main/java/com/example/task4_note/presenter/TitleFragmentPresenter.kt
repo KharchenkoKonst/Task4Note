@@ -16,6 +16,8 @@ class TitleFragmentPresenter(private val view: ITitleFragment, private val model
         val notes = model.noteDao().getAll()
         view.setNotesToRecycler(notes)
     }
+
+    suspend fun getAllNotes() = model.noteDao().getAll()
     //    private var index: Int? = null
 
 //    fun addNote(note: Note) {
