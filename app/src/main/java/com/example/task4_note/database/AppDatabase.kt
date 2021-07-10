@@ -49,4 +49,7 @@ interface NoteDao {
 
     @Insert
     suspend fun insert(note: Note)
+
+    @Update
+    suspend fun update(note: Note)
 }

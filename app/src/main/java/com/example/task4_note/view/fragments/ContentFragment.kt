@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.task4_note.R
 import com.example.task4_note.database.AppDatabase
+import com.example.task4_note.database.Note
+import com.example.task4_note.model.note.NOTE_DATA
 import com.example.task4_note.presenter.ContentFragmentPresenter
 import com.example.task4_note.view.interfaces.IContentFragment
 import kotlinx.coroutines.launch
@@ -48,7 +50,7 @@ class ContentFragment : Fragment(), IContentFragment {
         _model = AppDatabase.getDatabase(requireActivity().applicationContext)
         _presenter = ContentFragmentPresenter(this, _model)
         _view.findViewById<ImageButton>(R.id.saveButton)
-            .setOnClickListener { lifecycleScope.launch { _presenter.saveNote() }}
+            .setOnClickListener { lifecycleScope.launch { _presenter.saveNote() } }
 
     }
 
@@ -62,20 +64,10 @@ class ContentFragment : Fragment(), IContentFragment {
 
     override fun toTitleFragment(data: Bundle) {
         parentFragmentManager.setFragmentResult(TitleFragment.NEW_NOTE, data)
-        requireActivity().supportFragmentManager.beginTransaction().apply {
-            remove(this@ContentFragment)
-            commit()
-        }
+//        requireActivity().supportFragmentManager.beginTransaction().apply {
+//            remove(this@ContentFragment)
+//            commit()
+//        }
 
     }
-
-//    override fun refreshNotes() {
-//        parentFragmentManager.setFragmentResult(HeadersFragment.REFRESH_HEADERS, null)
-//        activity!!.supportFragmentManager.beginTransaction().remove(this).commit()
-//    } //
-    //    @Override
-    //    public void returnEditedNote(Bundle data) {
-    //        getParentFragmentManager().setFragmentResult(HeadersFragment.EDITED_NOTE, data);
-    //        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
-    //    }
 }

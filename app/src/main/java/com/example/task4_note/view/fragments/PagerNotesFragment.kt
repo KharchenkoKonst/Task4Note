@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.example.task4_note.R
 import com.example.task4_note.database.Note
 import com.example.task4_note.model.note.NOTE_DATA
+import kotlinx.android.synthetic.main.fragment_content.*
 
 class PagerNotesFragment : Fragment() {
 

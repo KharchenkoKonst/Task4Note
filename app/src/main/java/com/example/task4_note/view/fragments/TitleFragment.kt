@@ -18,9 +18,6 @@ import com.example.task4_note.presenter.TitleFragmentPresenter
 import com.example.task4_note.view.PagerActivity
 import com.example.task4_note.view.interfaces.ITitleFragment
 import kotlinx.coroutines.launch
-import java.io.Serializable
-import java.security.AllPermission
-import java.util.ArrayList
 
 class TitleFragment : Fragment(), ITitleFragment, NotesRecyclerAdapter.OnNoteListener {
     private lateinit var _view: View
@@ -81,12 +78,12 @@ class TitleFragment : Fragment(), ITitleFragment, NotesRecyclerAdapter.OnNoteLis
     }
 
     override fun onNoteClick(position: Int) {
-        var notes: ArrayList<Note>
-        lifecycleScope.launch { notes = _presenter.getAllNotes() as ArrayList<Note> }
-        val intent = Intent(requireActivity(), PagerActivity::class.java)
-        intent.putExtra(NOTE_ID, position)
-        intent.putParcelableArrayListExtra(ALL_NOTES, notes)
-        startActivity(intent)
+
+        lifecycleScope.launch {
+            val intent = Intent(requireActivity(), PagerActivity::class.java)
+            intent.putExtra(NOTE_ID, position)
+            startActivity(intent)
+        }
     }
 
     companion object {

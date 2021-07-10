@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.task4_note.database.Note
 import com.example.task4_note.database.TempDB
 import com.example.task4_note.view.PagerActivity
+import com.example.task4_note.view.fragments.ContentFragment
 import com.example.task4_note.view.fragments.PagerNotesFragment
 import com.example.task4_note.view.fragments.TitleFragment
 
@@ -18,7 +19,7 @@ class NotesPagerAdapter(fragment: FragmentActivity) :
 
     fun setItems(notes : List<Note>){
         this.notes = notes
-        PagerActivity.test = true
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = notes.size

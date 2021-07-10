@@ -2,6 +2,8 @@ package com.example.task4_note.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.ImageButton
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.task4_note.R
@@ -14,7 +16,7 @@ import com.example.task4_note.view.interfaces.IPagerView
 import kotlinx.coroutines.launch
 
 class PagerActivity : AppCompatActivity(), IPagerView {
-    private val adapter: NotesPagerAdapter by lazy { getPagerAdapter() }
+    private val adapter = NotesPagerAdapter(this)
     private lateinit var model: AppDatabase
     private lateinit var presenter: PagerPresenter
 
@@ -22,25 +24,17 @@ class PagerActivity : AppCompatActivity(), IPagerView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pager)
         val startPos = intent.extras?.getInt(TitleFragment.NOTE_ID)
+
         model = AppDatabase.getDatabase(this)
         presenter = PagerPresenter(this, model)
-        lifecycleScope.launch { presenter.setAllData() }
-        findViewById<ViewPager2>(R.id.pager).let {
-            it.adapter = adapter
-            startPos?.run { it.setCurrentItem(startPos, false) }
+        lifecycleScope.launch {
+            findViewById<ViewPager2>(R.id.pager).let {
+                it.adapter = adapter
+                presenter.setAllData()
+                startPos?.run { it.setCurrentItem(startPos, false) }
+            }
         }
-//        pager.adapter = adapter
-//        if (startPos != null) {
-//            while (false){ }
-//            pager.setCurrentItem(startPos, false)
-//        }
     }
-
-    companion object{
-        var test = false
-    }
-
-    private fun getPagerAdapter() = NotesPagerAdapter(this)
 
     override fun setAdapterData(notes: List<Note>) {
         adapter.setItems(notes)

@@ -1,6 +1,7 @@
 package com.example.task4_note.presenter
 
 import com.example.task4_note.database.AppDatabase
+import com.example.task4_note.database.Note
 import com.example.task4_note.view.interfaces.IPagerView
 
 class PagerPresenter(
@@ -8,7 +9,6 @@ class PagerPresenter(
     private val model: AppDatabase
 ) {
     suspend fun setAllData() {
-        val notes = model.noteDao().getAll()
-        view.setAdapterData(notes)
+        view.setAdapterData(model.noteDao().getAll())
     }
 }
