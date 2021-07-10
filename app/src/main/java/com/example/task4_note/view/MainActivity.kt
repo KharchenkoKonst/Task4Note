@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.task4_note.R
 import com.example.task4_note.view.fragments.AboutDialogFragment
 import com.example.task4_note.view.fragments.HeadersFragment
 import com.example.task4_note.view.fragments.TitleFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.fragment, fragment)
         transaction.commit()
+
+        setSupportActionBar(toolbar as Toolbar?)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

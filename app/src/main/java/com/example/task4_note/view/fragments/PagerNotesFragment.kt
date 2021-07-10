@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.task4_note.R
 import com.example.task4_note.database.Note
 import com.example.task4_note.model.note.NOTE_DATA
+import com.example.task4_note.view.PagerActivity
 import kotlinx.android.synthetic.main.fragment_content.*
 
 class PagerNotesFragment : Fragment() {
@@ -20,6 +21,10 @@ class PagerNotesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_content, container, false)
+        view.findViewById<ImageButton>(R.id.saveButton).setOnClickListener {
+            val activity = requireActivity() as PagerActivity
+            activity.changeItem(headerText.text.toString(), bodyText.text.toString())
+        }
         return view
     }
 

@@ -17,10 +17,12 @@ class NotesPagerAdapter(fragment: FragmentActivity) :
 
     private var notes = emptyList<Note>()
 
-    fun setItems(notes : List<Note>){
+    fun setItems(notes: List<Note>) {
         this.notes = notes
         notifyDataSetChanged()
     }
+
+    fun getCurrentItem(id: Int) = notes[id]
 
     override fun getItemCount(): Int = notes.size
 

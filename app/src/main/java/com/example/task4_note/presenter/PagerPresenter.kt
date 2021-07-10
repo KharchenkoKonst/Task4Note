@@ -11,4 +11,12 @@ class PagerPresenter(
     suspend fun setAllData() {
         view.setAdapterData(model.noteDao().getAll())
     }
+
+    suspend fun updateData(header: String, body: String, note: Note) {
+        note.run {
+            title = header
+            this.body = body
+        }
+        model.noteDao().update(note)
+    }
 }

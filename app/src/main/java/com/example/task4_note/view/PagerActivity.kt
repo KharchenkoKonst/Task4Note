@@ -19,6 +19,7 @@ class PagerActivity : AppCompatActivity(), IPagerView {
     private val adapter = NotesPagerAdapter(this)
     private lateinit var model: AppDatabase
     private lateinit var presenter: PagerPresenter
+    private lateinit var pager: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,13 +28,19 @@ class PagerActivity : AppCompatActivity(), IPagerView {
 
         model = AppDatabase.getDatabase(this)
         presenter = PagerPresenter(this, model)
+        pager = findViewById(R.id.pager)
         lifecycleScope.launch {
-            findViewById<ViewPager2>(R.id.pager).let {
+            pager.let {
                 it.adapter = adapter
                 presenter.setAllData()
                 startPos?.run { it.setCurrentItem(startPos, false) }
             }
         }
+    }
+
+    fun changeItem(header: String, body: String) {
+        val note = adapter.getCurrentItem(pager.currentItem)
+        lifecycleScope.launch { presenter.updateData(header, body, note) }
     }
 
     override fun setAdapterData(notes: List<Note>) {

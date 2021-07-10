@@ -86,6 +86,13 @@ class TitleFragment : Fragment(), ITitleFragment, NotesRecyclerAdapter.OnNoteLis
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            _recyclerAdapter.setItems(_presenter.getAllNotes())
+        }
+    }
+
     companion object {
         const val NEW_NOTE = "NEW_NOTE"
         const val NOTE_DATA = "NOTE_DATA"
