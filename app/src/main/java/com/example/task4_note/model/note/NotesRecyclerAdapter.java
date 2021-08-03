@@ -39,15 +39,6 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
         notifyDataSetChanged();
     }
 
-//    public void editItem(Note note, int id){
-//        this.notes.set(id, note);
-//    }
-//
-//    public void clearItems() {
-//        this.notes.clear();
-//        notifyDataSetChanged();
-//    }
-
     @NonNull
     @Override
     public NotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

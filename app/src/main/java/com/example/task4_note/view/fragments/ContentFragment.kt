@@ -28,21 +28,6 @@ class ContentFragment : Fragment(), IContentFragment {
     ): View {
         _view = inflater.inflate(R.layout.fragment_content, container, false)
         init()
-        /*
-        Как лучше сделать? Я хочу открывать один и тот же фрагмент для создания и просмотра заметки,
-        но в первом случае поля будут пустыми (кроме подсказок из xml), а во втором заполнены
-        переданными данными о сохранённой заметке, которые, соответственно, будут отображены и доступны для
-        изменения.
-*/
-//        Bundle data = getArguments();
-//        if (data != null) {
-//            isEdit = true;
-//            Note note = (Note) data.getSerializable(HeadersFragment.OPEN_NOTE);
-//            date = note.getDate();
-//            ((EditText) view.findViewById(R.id.headerText)).setText(note.getHeader());
-//            ((EditText) view.findViewById(R.id.bodyText)).setText(note.getBody());
-//        }
-
         return _view
     }
 
@@ -64,10 +49,5 @@ class ContentFragment : Fragment(), IContentFragment {
 
     override fun toTitleFragment(data: Bundle) {
         parentFragmentManager.setFragmentResult(TitleFragment.NEW_NOTE, data)
-//        requireActivity().supportFragmentManager.beginTransaction().apply {
-//            remove(this@ContentFragment)
-//            commit()
-//        }
-
     }
 }

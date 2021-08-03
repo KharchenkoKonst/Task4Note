@@ -78,7 +78,6 @@ class TitleFragment : Fragment(), ITitleFragment, NotesRecyclerAdapter.OnNoteLis
     }
 
     override fun onNoteClick(position: Int) {
-
         lifecycleScope.launch {
             val intent = Intent(requireActivity(), PagerActivity::class.java)
             intent.putExtra(NOTE_ID, position)
@@ -97,6 +96,5 @@ class TitleFragment : Fragment(), ITitleFragment, NotesRecyclerAdapter.OnNoteLis
         const val NEW_NOTE = "NEW_NOTE"
         const val NOTE_DATA = "NOTE_DATA"
         const val NOTE_ID = "NOTE_ID"
-        const val ALL_NOTES = "ALL_NOTES"
     }
 }
