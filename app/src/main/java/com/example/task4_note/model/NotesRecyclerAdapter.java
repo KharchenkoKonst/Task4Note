@@ -1,4 +1,4 @@
-package com.example.task4_note.model.note;
+package com.example.task4_note.model;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.task4_note.R;
-import com.example.task4_note.database.Note;
-import com.example.task4_note.database.TempDB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +20,6 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
 
     public NotesRecyclerAdapter(OnNoteListener onNoteListener) {
         this.onNoteListener = onNoteListener;
-    }
-
-    public void refresh() {
-        this.notes = TempDB.Companion.getNotes();
-        notifyDataSetChanged();
     }
 
     public void addItem(Note note) {

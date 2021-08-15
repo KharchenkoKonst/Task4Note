@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.task4_note.R
 import com.example.task4_note.database.AppDatabase
-import com.example.task4_note.database.Note
-import com.example.task4_note.model.note.NotesRecyclerAdapter
+import com.example.task4_note.model.Note
+import com.example.task4_note.model.NotesRecyclerAdapter
 import com.example.task4_note.presenter.TitleFragmentPresenter
 import com.example.task4_note.view.PagerActivity
 import com.example.task4_note.view.interfaces.ITitleFragment

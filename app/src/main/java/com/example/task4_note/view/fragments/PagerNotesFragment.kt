@@ -8,9 +8,9 @@ import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.example.task4_note.R
-import com.example.task4_note.database.Note
-import com.example.task4_note.model.note.NOTE_DATA
+import com.example.task4_note.model.Note
 import com.example.task4_note.view.PagerActivity
+import com.example.task4_note.view.fragments.TitleFragment.Companion.NOTE_DATA
 import kotlinx.android.synthetic.main.fragment_content.*
 
 class PagerNotesFragment : Fragment() {
@@ -29,7 +29,7 @@ class PagerNotesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        arguments?.takeIf { it.containsKey(TitleFragment.NOTE_DATA) }?.apply {
+        arguments?.takeIf { it.containsKey(NOTE_DATA) }?.apply {
             val header = view.findViewById<EditText>(R.id.headerText)
             val body = view.findViewById<EditText>(R.id.bodyText)
             val data = getSerializable(NOTE_DATA) as Note
@@ -37,5 +37,4 @@ class PagerNotesFragment : Fragment() {
             body.setText(data.body)
         }
     }
-
 }

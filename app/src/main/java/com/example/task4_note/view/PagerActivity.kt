@@ -2,14 +2,12 @@ package com.example.task4_note.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageButton
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.task4_note.R
 import com.example.task4_note.database.AppDatabase
-import com.example.task4_note.database.Note
-import com.example.task4_note.model.note.NotesPagerAdapter
+import com.example.task4_note.model.Note
+import com.example.task4_note.model.NotesPagerAdapter
 import com.example.task4_note.presenter.PagerPresenter
 import com.example.task4_note.view.fragments.TitleFragment
 import com.example.task4_note.view.interfaces.IPagerView

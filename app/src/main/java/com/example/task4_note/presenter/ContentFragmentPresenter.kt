@@ -2,7 +2,7 @@ package com.example.task4_note.presenter
 
 import android.os.Bundle
 import com.example.task4_note.database.AppDatabase
-import com.example.task4_note.database.Note
+import com.example.task4_note.model.Note
 import com.example.task4_note.view.fragments.TitleFragment
 import com.example.task4_note.view.interfaces.IContentFragment
 import java.text.SimpleDateFormat

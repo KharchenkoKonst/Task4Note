@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.task4_note.R
 import com.example.task4_note.database.AppDatabase
-import com.example.task4_note.database.Note
-import com.example.task4_note.model.note.NOTE_DATA
 import com.example.task4_note.presenter.ContentFragmentPresenter
 import com.example.task4_note.view.interfaces.IContentFragment
 import kotlinx.coroutines.launch

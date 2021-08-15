@@ -16,12 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 - Записи сохранять в Room
  */
 
-/*
-В проекте много проблем, сразу видно что идёт вызов БД из адаптера - очень некрасиво...
-В последующих проектах я так не делал - передача данных в адаптер осуществлятся из view через VewModel
-по DataBinding привязке.
- */
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

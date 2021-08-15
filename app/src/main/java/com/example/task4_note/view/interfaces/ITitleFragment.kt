@@ -1,6 +1,7 @@
 package com.example.task4_note.view.interfaces
 
-import com.example.task4_note.database.Note
+import com.example.task4_note.model.Note
+
 
 interface ITitleFragment {
     fun addNoteToRecycler(note: Note)

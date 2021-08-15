@@ -1,7 +1,7 @@
 package com.example.task4_note.presenter
 
 import com.example.task4_note.database.AppDatabase
-import com.example.task4_note.database.Note
+import com.example.task4_note.model.Note
 import com.example.task4_note.view.interfaces.IPagerView
 
 class PagerPresenter(
@@ -14,7 +14,7 @@ class PagerPresenter(
 
     suspend fun updateData(header: String, body: String, note: Note) {
         note.run {
-            title = header
+            this.title = header
             this.body = body
         }
         model.noteDao().update(note)
